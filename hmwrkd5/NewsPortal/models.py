@@ -25,14 +25,16 @@ class Author(models.Model):
 class Category(models.Model):
     category_name = models.CharField(max_length = 64, unique = True)
 
+
+NEWS = 'NEWS'
+ARTICLE = 'ART'
+TYPEOFPOST = [
+    ('NEWS', 'News'),
+    ('ART', 'Article'),
+]
+
 class Post(models.Model):
 
-    NEWS = 'NEWS'
-    ARTICLE = 'ART'
-    TYPEOFPOST = [
-        ('NEWS', 'News'),
-        ('ART', 'Article'),
-    ]
     author = models.ForeignKey('Author', on_delete = models.CASCADE)
     news_or_article = models.CharField(max_length =4, choices=TYPEOFPOST)
     time_in = models.DateTimeField(auto_now_add = True)
